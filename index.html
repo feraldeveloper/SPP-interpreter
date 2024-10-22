@@ -2,18 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tall and Wide Input Field</title>
+    <title>Tall and Wide Input Field with Button</title>
     <style>
-        input[type="text"] {
+        textarea {
             width: 100%;
-            height: 100px;
+            height: 300px;
             font-size: 18px;
             padding: 10px;
         }
     </style>
 </head>
 <body>
-    <input type="text" placeholder="Type here...">
+    <textarea id="inputField" placeholder="Type here..."></textarea>
+    <br>
+    <button onclick="processInput()">Process Input</button>
+
+    <script>
+        function processInput() {
+            var inputField = document.getElementById('inputField');
+            var content = inputField.value;
+
+            // Replace all newline characters with semicolons
+            content = content.replace(/\n/g, ';');
+
+            inputField.value = content;
+        }
+    </script>
 </body>
 </html>
