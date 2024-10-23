@@ -23,13 +23,11 @@
     </style>
 </head>
 <body style="background-color:orange;">
-    
 
     <h1>SPP compiler</h1>
-    
+
     <div class="rectangle">
 
-        
         <p>
         fundamentals:<br>
         <br>
@@ -51,7 +49,7 @@
         0123456789 - 31 - 40<br>
         up arrow - 41<br>
         down arrow - 42<br>
-        left arrow -  43<br>
+        left arrow - 43<br>
         right arrow - 44<br>
         space - 45<br>
         any key - 46<br>
@@ -66,7 +64,7 @@
         GOIF (number) (*a a, b, or c) (=, >, <) (string/number) //goes to (number) if the inequality is satisfied, add support for var to var, idc enough to add it<br>
         ADD (*a a, b) (*a a, b or number) // exports to the C variable<br>
         SUB (*a a, b) (*a a, b or number) // exports to the C variable<br>
-        SWP (swaps a and b<br>
+        SWP (swaps a and b)<br>
         END (ends program)<br>
         CLEAR (clears output)<br>
         </p>
@@ -75,6 +73,7 @@
     <textarea id="inputField" placeholder="Type here..."></textarea>
     <br>
     <button onclick="processInput()">Process Input</button>
+    <button onclick="deprocessInput()">Deprocess Input</button>
     
     <script>
         function processInput() {
@@ -90,6 +89,16 @@
             }).join(';');
 
             inputField.value = filteredContent;
+        }
+
+        function deprocessInput() {
+            var inputField = document.getElementById('inputField');
+            var content = inputField.value;
+
+            // Replace semicolons with new lines
+            var deprocessedContent = content.split(';').join('\n');
+
+            inputField.value = deprocessedContent;
         }
     </script>
 </body>
