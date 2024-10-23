@@ -11,56 +11,67 @@
             height: 600px;
             font-size: 18px;
             padding: 10px;
-        }3
+        }
+
+        .rectangle {
+            border: 2px solid white;
+            padding: 20px;
+            background-color: orange;
+            width: 70%;
+        }
     </style>
 </head>
 <body style="background-color:orange;">
 
     <h1>SPP compiler</h1>
-    <p style="color: white">
-fundamentals:<br>
-<br>
-*A reads the address indicated by A.<br>
-<br>
-if A was 29, then *a would be the value of register 29.<br>
-b is just a value that can be read and wrote.<br>
-c is the result of ADD and SUB, and can only be read.<br>
-PC is the current instruction.<br>
-<br>
-<br>
-Register allocation:<br>
-<br>
-registers 31-46 are dedicated to keys when register 30 is 8.<br>
-everything else is yours.<br>
-<br>
-keys:<br>
-<br>
-0123456789 - 31 - 40<br>
-up arrow - 41<br>
-down arrow - 42<br>
-left arrow -  43<br>
-right arrow - 44<br>
-space - 45<br>
-any key - 46<br>
-<br>
-INSTRUCTION SET<br>
-<br>
-ASM<br>
-<br>
-SET (*a, a, or b) (a, b, c, or string/number) // sets variable<br>
-PRINT (*a a, b, or c) // prints out value in output<br>
-GO (number) // goes to specific instruction<br>
-GOIF (number) (*a a, b, or c) (=, >, <) (string/number) //goes to (number) if the inequality is satisfied, add support for var to var, idc enough to add it<br>
-ADD (*a a, b) (*a a, b or number) // exports to the C variable<br>
-SUB (*a a, b) (*a a, b or number) // exports to the C variable<br>
-SWP (swaps a and b<br>
-END (ends program)<br>
-CLEAR (clears output)<br>
-</p>
+    
+    <div class="rectangle">
+        <p style="color: white">
+        fundamentals:<br>
+        <br>
+        *A reads the address indicated by A.<br>
+        <br>
+        if A was 29, then *a would be the value of register 29.<br>
+        b is just a value that can be read and wrote.<br>
+        c is the result of ADD and SUB, and can only be read.<br>
+        PC is the current instruction.<br>
+        <br>
+        <br>
+        Register allocation:<br>
+        <br>
+        registers 31-46 are dedicated to keys when register 30 is 8.<br>
+        everything else is yours.<br>
+        <br>
+        keys:<br>
+        <br>
+        0123456789 - 31 - 40<br>
+        up arrow - 41<br>
+        down arrow - 42<br>
+        left arrow -  43<br>
+        right arrow - 44<br>
+        space - 45<br>
+        any key - 46<br>
+        <br>
+        INSTRUCTION SET<br>
+        <br>
+        ASM<br>
+        <br>
+        SET (*a, a, or b) (a, b, c, or string/number) // sets variable<br>
+        PRINT (*a a, b, or c) // prints out value in output<br>
+        GO (number) // goes to specific instruction<br>
+        GOIF (number) (*a a, b, or c) (=, >, <) (string/number) //goes to (number) if the inequality is satisfied, add support for var to var, idc enough to add it<br>
+        ADD (*a a, b) (*a a, b or number) // exports to the C variable<br>
+        SUB (*a a, b) (*a a, b or number) // exports to the C variable<br>
+        SWP (swaps a and b<br>
+        END (ends program)<br>
+        CLEAR (clears output)<br>
+        </p>
+    </div>
+    
     <textarea id="inputField" placeholder="Type here..."></textarea>
     <br>
     <button onclick="processInput()">Process Input</button>
-    <
+    
     <script>
         function processInput() {
             var inputField = document.getElementById('inputField');
