@@ -29,59 +29,120 @@
     <div class="rectangle">
 
         <p>
-        fundamentals:<br>
-        <br>
-        *A reads the address indicated by A.<br>
-        <br>
-        if A was 29, then *a would be the value of register 29.<br>
-        b is just a value that can be read and wrote.<br>
-        c is the result of ADD and SUB, and can only be read.<br>
-        PC is the current instruction.<br>
-        <br>
-        <br>
-        Register allocation:<br>
-        <br>
-        registers 31-46 are dedicated to keys when register 30 is 8.<br>
-        everything else is yours.<br>
-        <br>
-        keys:<br>
-        <br>
-        0123456789 - 31 - 40<br>
-        up arrow - 41<br>
-        down arrow - 42<br>
-        left arrow - 43<br>
-        right arrow - 44<br>
-        space - 45<br>
-        any key - 46<br>
-        <br>
-        INSTRUCTION SET<br>
-        <br>
-        ASM<br>
-        <br>
-        SET (*a, a, or b) (a, b, c, or string/number) // sets variable<br>
-        PRINT (*a a, b, or c) // prints out value in output<br>
-        GO (number) // goes to specific instruction<br>
-        GOIF (number) (*a a, b, or c) (=, >, <) (string/number) //goes to (number) if the inequality is satisfied, add support for var to var, idc enough to add it<br>
-        ADD (*a a, b) (*a a, b or number) // exports to the C variable<br>
-        SUB (*a a, b) (*a a, b or number) // exports to the C variable<br>
-        SWP (swaps a and b)<br>
-        END (ends program)<br>
-        CLEAR (clears output)<br>
-<br>
-            pen:<br>
-<br>
-251, 252: x, y<br>
-253: pen color<br>
-254: pen size<br>
-255: if 8, pen down. else, pen up<br>
-256: if 8, clear all pen<br><br>
-            you can do comments with a double slash, but there has to be a space.<br>
-//invalid<br>
-// valid<br>
-<br>
-MACRO ,(name) // defines macro<br>
-,(name) // executes macro<br>
-ENDMACRO // ends the macro. goes back to where PC was when the macro was ran.<br>
+            REGISTERS:<br>
+            theres 4096 of them.<br>
+            register access starts at 1. register 0 does not exist.<br><br>
+            VARIABLES:<br>
+            <br>
+            A - ADDRESS<br>
+            *A - CONTENTS OF ADDRESS A<br>
+            D - DATA VARIABLE, CAN BE READ AND WROTE TO<br>
+            PC - CURRENT LINE<br>
+            <br>
+            (cmd)x(param)x(param)x(param)...<br>
+            <br>
+            0000-GOLABEL<br>
+            USAGE<br>
+            <br>
+            0000xGO_LABEL<br>
+            OR IN ASSEMBLY<br>
+            .GO_LABEL<br>
+            <br>
+            0001-set<br>
+            <br>
+            USAGE<br>
+            <br>
+            0001xAx1<br>
+            OR IN ASSEMBLY<br>
+            SET A 1<br>
+            <br>
+            0010-add<br>
+            <br>
+            USAGE<br>
+            <br>
+            0010x5x2<br>
+            OR IN ASSEMBLY<br>
+            ADD 5 2<br>
+            <br>
+            arithmetic results output to RAM address 1<br>
+            <br>
+            0011-go<br>
+            <br>
+            USAGE<br>
+            <br>
+            0011x5<br>
+            OR IN ASSEMBLY<br>
+            GO 5<br>
+            <br>
+            0100-goif<br>
+            <br>
+            USAGE<br>
+            <br>
+            0100x5xAx>x5<br>
+            OR IN ASSEMBLY<br>
+            GOIF 5 A > 5<br>
+            <br>
+            INEQUALITY SYMBOLS: > < = >= <= !=<br>
+            <br>
+            0101-print<br>
+            <br>
+            USAGE<br>
+            <br>
+            0101xHELLO WORLD<br>
+            OR IN ASSEMBLY<br>
+            PRINT HELLO WORLD<br>
+            <br>
+            0110-mult<br>
+            USAGE<br>
+            <br>
+            0110x5x2<br>
+            OR IN ASSEMBLY<br>
+            MULT 5 2<br>
+            <br>
+            0111-div<br>
+            <br>
+            USAGE<br>
+            <br>
+            0111x5x2<br>
+            OR IN ASSEMBLY<br>
+            DIV 5 2<br>
+            <br>
+            1000-end<br>
+            <br>
+            USAGE<br>
+            <br>
+            1000<br>
+            OR IN ASSEMBLY<br>
+            END<br>
+            <br>
+            you can modify registers by setting A to whatever register you wish to modify, and *A as the contents, like:<br>
+            SET A 5    # targets register 5<br>
+            SET *A 4   # sets the value of register 5 to 4<br>
+            or you can directly access registers via <br>
+            SET *5 4<br>
+            *D does not exist.<br>
+
+
+            PEN:<br>
+            WHEN REG 2000 = 8<br>
+                REG 2001 AND 2002 IS X AND Y<br>
+                WHEN REG 2003 = 8, PEN UP. ELSE, PEN DOWN<br>
+                WHEN REG 2004 = 8, CLEAR ALL PEN<br>
+                <br>
+            INPUT:<br>
+             WHEN REG 1000 = 8<br>
+                ARROW KEYS 1001-3004<br>
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ - 1005-1030<br>
+                0123456789 - 1031-1040<br>
+                ANY KEY - 1041<br>
+                MOUSE X AND Y - 1042 - 1043<br>
+                MOUSE DOWN - 1044<br>
+                ENTER - 1945<br>
+            STORAGE:<br>
+            WHEN REG 3999 =8
+                REG 4000 IS CURRENT STORAGE VALUE
+                REG 4001 IS CURRENT STORAGE ADDRESS
+                REG 3998 IS READ OR WRITE (8 IS WRITE, ANYTHING ELSE IS READ)
         </p>
     </div>
     <br><br>
